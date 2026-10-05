@@ -40,9 +40,10 @@ var drawMode = 2;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  rectMode(BURN);
-  noFill();
+  //rectMode(BURN);
+//  noFill();
 //blendMode(MULTIPLY);
+ fill(240, 150, 150);
 }
 
 function draw() {

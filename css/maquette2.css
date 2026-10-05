@@ -1,0 +1,609 @@
+/* ===========================================================
+   MAQUETTE 2 — liste de travaux "texte qui coule", organisée
+   par catégorie.
+   - Navbar transparente fixe, texte défilant en masque de fusion
+   - Survol : vignette de l'image qui suit le curseur
+   - Clic : panneau de détail plein écran, une seule page
+     (meta, brief, description 3 colonnes, carrousel horizontal
+     d'images, contour fin, croix de fermeture)
+   - Footer jaune (repris de l'ancienne navbar)
+   =========================================================== */
+
+:root {
+  --fs-body: 0.95rem;        /* taille unique pour tous les paragraphes */
+  --fs-title-panel: 1.75rem; /* taille unique pour les titres de projet (panneau) */
+  --fs-title-index: 1rem;    /* taille unique pour les titres de projet (liste/index) */
+  --fs-detail: 0.75rem;      /* méta + description des panneaux */
+  --yellow: #ffe500;
+}
+
+body.flow {
+  background-color: #ffffff;
+  color: #111111;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  cursor: auto;
+  padding-top: 2.75rem; /* dégage l'espace sous la navbar fixe */
+}
+
+.flow a,
+.flow button {
+  color: inherit;
+}
+
+.flow hr.rule {
+  border: none;
+  border-top: 1px solid #e5e5e5;
+  margin: 0;
+}
+
+/* ---------- Navbar transparente, texte défilant (marquee) ---------- */
+.cargo-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background-color: transparent;
+  height: 2.75rem;
+  overflow: hidden;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+  /* Masque de fusion : le texte reste lisible quel que soit
+     ce qui se trouve derrière la navbar (conservé tel quel). */
+  mix-blend-mode: difference;
+  color: #ffffff;
+}
+
+.navbar-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+  animation: navbar-marquee 22s linear infinite;
+}
+
+.navbar-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes navbar-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.cargo-navbar .nav-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 1.25rem;
+}
+
+.cargo-navbar a,
+.cargo-navbar .nav-about {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.cargo-navbar .nav-about {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+.cargo-navbar a:hover,
+.cargo-navbar .nav-about:hover {
+  opacity: 0.7;
+}
+
+.cargo-navbar .nav-time,
+.cargo-navbar .nav-date {
+  font-variant-numeric: tabular-nums;
+  color: #ffffff;
+}
+
+.cargo-navbar .nav-sep {
+  margin: 0 1.25rem;
+  opacity: 0.6;
+  color: #ffffff;
+}
+
+/* ---------- Carrousel principal sous la navbar ---------- */
+.home-carousel {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 2.75rem); /* fallback */
+  height: calc(100dvh - 2.75rem);
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.home-carousel-viewport {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.home-carousel-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.home-carousel-track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+}
+
+.home-carousel-slide {
+  width: 100vw;
+  height: 100%;
+  margin: 0;
+  flex: 0 0 100vw;
+  scroll-snap-align: start;
+  background: #f2f2f2;
+}
+
+.home-carousel-slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.home-carousel-controls {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 2;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0;
+}
+
+.home-carousel-controls button {
+  width: 2.9rem;
+  height: 1.9rem;
+}
+
+.swiss-control {
+  appearance: none;
+  background: transparent;
+  border: 1px solid #111111;
+  border-radius: 999px;
+  padding: 0 0.45rem;
+  cursor: pointer;
+  color: #111111;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.swiss-control:hover {
+  background: #111111;
+  color: #ffffff;
+}
+
+.swiss-arrow {
+  width: 74%;
+  height: 0.9rem;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.25;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.home-carousel-count {
+  min-width: 4.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #777777;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Catégories ---------- */
+.flow-categories {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.flow-category {
+  padding: 0.75rem 2rem;
+}
+
+.flow-category-label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #111111;
+  margin-bottom: 0.4rem;
+}
+
+.flow-list {
+  font-size: var(--fs-title-index);
+  line-height: 1.4;
+}
+
+.flow-list button.project-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: 0.5rem;
+  font: inherit;
+  font-size: var(--fs-title-index);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.flow-list button.project-trigger:hover {
+  text-decoration: underline;
+}
+
+.flow-list .num {
+  color: #aaaaaa;
+  margin-right: 0.1rem;
+}
+
+.flow-list .placeholder-item {
+  color: #bbbbbb;
+  font-style: italic;
+}
+
+/* ---------- Vignette flottante au survol ---------- */
+.hover-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 150px;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.15s ease;
+  z-index: 60;
+  filter: grayscale(100%);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+}
+
+.hover-preview.visible {
+  opacity: 1;
+}
+
+.hover-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------- Pied de page jaune ---------- */
+.flow-footer {
+  margin-top: 5vh;
+  background-color: var(--yellow);
+}
+
+.flow-footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 2rem 1rem;
+  font-size: 0.75rem;
+  color: #000000;
+}
+
+.mail-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.28rem 0.7rem;
+  border: 1px solid #111111;
+  border-radius: 999px;
+  background: transparent;
+  color: #111111;
+  text-decoration: none;
+  line-height: 1;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.mail-pill:hover {
+  background: #111111;
+  color: #ffffff;
+}
+
+/* ===========================================================
+   PANNEAU DE DÉTAIL PROJET
+   =========================================================== */
+
+.project-panel,
+.about-panel {
+  position: fixed;
+  inset: 0;
+  background-color: #ffffff;
+  transform: translateY(100%);
+  transition: transform 0.35s ease;
+  z-index: 250; /* au-dessus de la navbar, qui ne cache plus la croix */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-panel.open,
+.about-panel.open {
+  transform: translateY(0);
+}
+
+/* Contour très fin, légèrement en retrait des bords */
+.panel-frame {
+  position: absolute;
+  inset: 0.75em;
+  border: 1px solid #111111;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.project-panel-inner,
+.about-panel-inner {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 2rem 1.25rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+.project-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+  flex: 0 0 auto;
+}
+
+.project-panel-close {
+  appearance: none;
+  position: static;
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.35rem;
+  background: transparent;
+  border: 1px solid #111111;
+  border-radius: 0;
+  color: #111111;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.project-panel-close:hover {
+  background: #111111;
+  color: #ffffff;
+}
+
+.panel-close-mark {
+  width: 0.85rem;
+  height: 0.85rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.25;
+  stroke-linecap: square;
+}
+
+.project-panel-title {
+  font-size: var(--fs-title-panel);
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+
+.project-panel-meta,
+.about-panel-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  padding: 0.65rem 0;
+  border-top: 1px solid #111111;
+  border-bottom: 1px solid #111111;
+  margin-bottom: 0.85rem;
+  flex: 0 0 auto;
+}
+
+.project-panel-meta > div,
+.about-panel-meta > div {
+  min-width: 0;
+  font-size: var(--fs-detail);
+  line-height: 1.35;
+}
+
+.project-panel-meta > div > span:last-child,
+.about-panel-meta > div > span:last-child {
+  overflow-wrap: anywhere;
+}
+
+.project-panel-meta .meta-label,
+.about-panel-meta .meta-label {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: var(--fs-detail);
+  line-height: 1.35;
+  color: #777777;
+  margin-bottom: 0.15rem;
+}
+
+.project-panel-brief {
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  max-width: 70ch;
+  margin: 0 0 0.75rem;
+  flex: 0 0 auto;
+}
+
+/* Description longue, 3 colonnes, alignée à gauche "en drapeau"
+   (texte non justifié) */
+.project-panel-description {
+  font-size: var(--fs-detail);
+  line-height: 1.4;
+  color: #333333;
+  columns: 3;
+  column-gap: 1.5rem;
+  text-align: left;
+  margin: 0 0 2rem;
+  flex: 0 0 auto;
+}
+
+.about-panel-description {
+  font-size: var(--fs-detail);
+  line-height: 1.4;
+  color: #333333;
+  max-width: 70ch;
+}
+
+.about-panel-description p {
+  margin: 0;
+}
+
+.project-panel-slideshow {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 0.85rem;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Carrousel horizontal : les images défilent côte à côte */
+.slideshow-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.slideshow-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.slideshow-scroll img {
+  height: 100%;
+  width: auto;
+  max-width: 85%;
+  flex: 0 0 auto;
+  object-fit: cover;
+  background-color: #f2f2f2;
+  scroll-snap-align: start;
+}
+
+.slideshow-empty {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaaaaa;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: #f2f2f2;
+}
+
+.slideshow-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 0.6rem;
+  flex: 0 0 auto;
+}
+
+/* Contrôles géométriques inspirés du graphisme suisse */
+.slideshow-controls button {
+  width: 2.9rem;
+  height: 1.9rem;
+}
+
+.slideshow-count {
+  font-size: 0.75rem;
+  color: #999999;
+  letter-spacing: 0.04em;
+}
+
+@media screen and (max-width: 600px) {
+  .flow-category,
+  .flow-footer-inner,
+  .project-panel-inner,
+  .about-panel-inner {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .project-panel-header {
+    gap: 1rem;
+  }
+
+  .project-panel-meta,
+  .about-panel-meta {
+    gap: 0.75rem;
+  }
+
+  .project-panel-description {
+    columns: 1;
+  }
+}
+
+@media (hover: none) {
+  .hover-preview {
+    display: none;
+  }
+}
+
+/* ---------- Desktop : afficher les visuels en entier, sans recadrage ---------- */
+@media screen and (min-width: 601px) {
+  .home-carousel-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+  }
+
+  .home-carousel-slide img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+}

@@ -1,114 +1,1041 @@
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Services Cartographique</title>
 
-    <title>M—S™</title>
-<link rel="shortcut icon" href="img/favicon.png">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/p5.js"></script>
-   <script src="p5.min.js"></script>
-   <script src="js/p5.dom.min.js"></script>
-   <script src="js/p5.sound.min.js"></script>
-
-   <!-- Generative Design Dependencies here -->
-   <!-- GG Bundled -->
-   <script src="js/gg-dep-bundle.js"></script>
-   <!-- Opentype -->
-   <script src="js/opentype.min.js"></script>
-   <!-- Rita -->
-   <script src="js/rita-small.min.js"></script>
-   <!-- Chroma -->
-   <script src="js/chroma.min.js"></script>
-   <!-- Jquery -->
-   <script src="jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-
-  <script src="js/sketch2.js"></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="./css/maquette2.css">
 </head>
-<body>
-        <!-- <nav class="navbar">
-            <div class="navbar-logo">
-                  <a href="index.html">
-                    <img class="logo" src="" width="55" height="25"></a>
+<body class="flow">
 
-            </div>
-    </nav> -->
+  <!-- Navbar transparente, fixe, texte défilant en masque de fusion -->
+  <div class="cargo-navbar">
+    <div class="navbar-track" id="navbarTrack">
+      <span class="nav-item"><button type="button" class="about-trigger nav-about"><b>SERVICES CARTOGRAPHIQUES</b></button></span>
+      <span class="nav-item">
+        <span> — &nbsp webdesign, éditions, graphisme &nbsp — &nbsp</span><span class="nav-time">00:00:00</span><span class="nav-sep">—</span><span class="nav-date">—</span></span>
+      <span class="nav-item"><button type="button" class="about-trigger nav-about"><b>SERVICES CARTOGRAPHIQUES</b></button></span>
+      <span class="nav-item"><span class="nav-time">00:00:00</span><span class="nav-sep">—</span><span class="nav-date">—</span></span>
+    </div>
+  </div>
 
+  <!-- Carrousel principal du portfolio, visible sous la navbar -->
+  <section class="home-carousel" aria-label="Sélection de projets">
+    <div class="home-carousel-viewport" id="homeCarouselViewport">
+      <div class="home-carousel-track" id="homeCarouselTrack"></div>
+    </div>
+    <div class="home-carousel-controls">
+      <button type="button" class="swiss-control" id="homeCarouselPrev" aria-label="Image précédente"><svg class="swiss-arrow" viewBox="0 0 36 16" aria-hidden="true" focusable="false"><path d="M34 8H4M10 2L4 8l6 6"/></svg></button>
+      <span class="home-carousel-count" id="homeCarouselCount"></span>
+      <button type="button" class="swiss-control" id="homeCarouselNext" aria-label="Image suivante"><svg class="swiss-arrow" viewBox="0 0 36 16" aria-hidden="true" focusable="false"><path d="M2 8h30M26 2l6 6-6 6"/></svg></button>
+    </div>
+  </section>
 
+  <div class="flow-categories">
 
+    <hr class="rule">
 
-    <section class="" style="background-image: url()">
+    <div class="flow-category">
+      <span class="flow-category-label">Éditions</span>
+      <div class="flow-list">
+        <button class="project-trigger" data-project="barbebarbey"><span class="num">01—</span>Barbé & Barbey</button>
+        <button class="project-trigger" data-project="desnouvelleshelene"><span class="num">02—</span>Des nouvelles d'Hélène</button>
+        <button class="project-trigger" data-project="echappeebelle"><span class="num">03—</span>Echappée Belle</button>
+        <button class="project-trigger" data-project="faismoirire"><span class="num">04—</span>Fais moi rire</button>
+        <button class="project-trigger" data-project="lesfouspensentils"><span class="num">05—</span>Les fous pensent-ils</button>
+        <button class="project-trigger" data-project="myvisualmemorygoogle"><span class="num">06—</span>My Visual Memory by Google</button>
+        <button class="project-trigger" data-project="paulfriedberg"><span class="num">07—</span>Paul Friedberg</button>
+      </div>
+    </div>
+    <hr class="rule">
 
-        <div class="header">
+    <div class="flow-category">
+      <span class="flow-category-label">Webdesign</span>
+      <div class="flow-list">
+        
+        <button class="project-trigger" data-project="valeriesaid"><span class="num">01—</span>Valérie Saïd</button>
+        <button class="project-trigger" data-project="culture"><span class="num">02—</span>Culturé</button>
+        <button class="project-trigger" data-project="netflixgaze"><span class="num">03—</span>Netflix Gaze</button>
+        <button class="project-trigger" data-project="onda"><span class="num">04—</span>Onda</button>
+        <button class="project-trigger" data-project="scandle"><span class="num">05—</span>Scandle</button>
+        <button class="project-trigger" data-project="sorbonneuniversites"><span class="num">06—</span>Sorbonne Universités</button>
+      </div>
+    </div>
+    <hr class="rule">
 
-              <h1>mapping services ™
-            </h1>
-            <hr>
-          </div>
+    <div class="flow-category">
+      <span class="flow-category-label">Graphisme</span>
+      <div class="flow-list">
+        <button class="project-trigger" data-project="amiscentrepompidou"><span class="num">01—</span>amis du Centre Pompidou</button>
+        <button class="project-trigger" data-project="epoqueagency"><span class="num">02—</span>Epoque Agency</button>
+        <button class="project-trigger" data-project="ikea"><span class="num">03—</span>IKEA</button>
+        <button class="project-trigger" data-project="manoarchitecture"><span class="num">04—</span>MANO Architecture</button>
+        <button class="project-trigger" data-project="morning"><span class="num">05—</span>Morning</button>
+        <button class="project-trigger" data-project="placecaulier"><span class="num">06—</span>Place Caulier</button>
+      </div>
+    </div>
+    <hr class="rule">
 
-      <div class="columns multiline">
-          <div class="column one-third">
-              <div class="project">
+    <div class="flow-category">
+      <span class="flow-category-label">Performances audiovisuelles</span>
+      <div class="flow-list">
+        <button class="project-trigger" data-project="kaio"><span class="num">01—</span>Kaio</button>
+        <button class="project-trigger" data-project="temoignages"><span class="num">02—</span>Témoignages</button>
+        <button class="project-trigger" data-project="tierra"><span class="num">03—</span>Tierra del Fuego</button>
+        <button class="project-trigger" data-project="odissey"><span class="num">04—</span>Odissey</button>
+        <button class="project-trigger" data-project="salto"><span class="num">05—</span>Salto</button>
+        <button class="project-trigger" data-project="space"><span class="num">06—</span>Space</button>
+        <button class="project-trigger" data-project="geipan"><span class="num">07—</span>Geipan</button>
+        <button class="project-trigger" data-project="saltoange"><span class="num">08—</span>Salto Ange</button>
+      </div>
+    </div>
 
-                  <p class="small">
-                    Mapping Services est artiste VJ basé à Pantin (FR). Il compose des performance audiovisuelles et travaille avec des artistes sonores. Il utilise la typographie, la data et la photographie pour proposer des itinérances poétiques.
-                  </p>
-              </div>
-          </div>
+  </div>
 
-          <div class="column one-third">
-              <div class="project">
+  <hr class="rule">
 
-                  <p class="small">
-                    Marvin Mayard is a VJ artist based in Pantin (FR). He composes audiovisual performances and works with sound artists. He uses typography, data and photography to create poetic itineraries.
+  <div class="flow-footer">
+    <div class="flow-footer-inner">
+      © Services Cartographique 2026 — <a class="mail-pill" href="mailto:servicescartographiques@protonmail.com">Mail</a>
+    </div>
+  </div>
 
-                  </p>
-              </div>
-          </div>
-          <div class="column one-third">
+  <!-- Vignette flottante au survol -->
+  <div class="hover-preview" id="hoverPreview">
+    <img id="hoverPreviewImg" src="" alt="">
+  </div>
 
-<div class="project">
+  <!-- Panneau de détail projet -->
+  <div class="project-panel" id="projectPanel" aria-hidden="true">
+    <div class="panel-frame"></div>
+    <div class="project-panel-inner">
+      <div class="project-panel-header">
+        <h2 class="project-panel-title" id="panelTitle"></h2>
+        <button class="project-panel-close" id="panelClose" type="button" aria-label="Fermer le projet"><svg class="panel-close-mark" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M3 3l12 12M15 3L3 15"/></svg></button>
+      </div>
 
-
-                <a class="button3" href="https://mmayard.github.io/travaux.html">
-                    MAPPING SERVICES
-                  </a>
-                  <a class="button3" href="https://linktr.ee/marvin_mayard">
-                    LIENS
-                  </a>
-                  <a class="button3"href="https://drive.google.com/file/d/1tSR7xBLkllTXDBNx3j8UPO4hTzM6J3nc/view?usp=sharing">
-                    .PDF
-                    </a>
-                    <a class="button3" href="https://marvinmayard.com">
-                    DESIGN STUDIO
-                    </a>
-
-
-            <a class="button3"href="https://vimeo.com/marvinmayard">
-              VIMEO
-              </a>
-
-              <a class="button3" href="mailto:marvin.mayard@gmail.com">
-              CONTACT
-              </a>
-
-          </div>
+      <div class="project-panel-meta">
+        <div>
+          <span class="meta-label">Année</span>
+          <span id="panelYear"></span>
+        </div>
+        <div>
+          <span class="meta-label">Client</span>
+          <span id="panelClient"></span>
+        </div>
+        <div>
+          <span class="meta-label">Catégorie</span>
+          <span id="panelCategory"></span>
         </div>
       </div>
-    </section>
-    <br>
 
-    <div id='myContainer'>
+      <p class="project-panel-brief" id="panelBrief"></p>
 
-       </div>
+      <div class="project-panel-description" id="panelDescription"></div>
 
+      <div class="project-panel-slideshow">
+        <div class="slideshow-scroll" id="slideshowScroll">
+          <!-- images injectées en JS -->
+        </div>
+        <div class="slideshow-controls" id="slideshowControls" style="display: none;">
+          <button class="swiss-control" id="slidePrev" type="button" aria-label="Image précédente"><svg class="swiss-arrow" viewBox="0 0 36 16" aria-hidden="true" focusable="false"><path d="M34 8H4M10 2L4 8l6 6"/></svg></button>
+          <span class="slideshow-count" id="slideshowCount"></span>
+          <button class="swiss-control" id="slideNext" type="button" aria-label="Image suivante"><svg class="swiss-arrow" viewBox="0 0 36 16" aria-hidden="true" focusable="false"><path d="M2 8h30M26 2l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Panneau À propos : même logique d'ouverture que les projets -->
+  <div class="about-panel" id="aboutPanel" aria-hidden="true">
+    <div class="panel-frame"></div>
+    <div class="about-panel-inner">
+      <div class="project-panel-header">
+        <h2 class="project-panel-title">Services Cartographiques</h2>
+        <button class="project-panel-close" id="aboutPanelClose" type="button" aria-label="Fermer À propos"><svg class="panel-close-mark" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M3 3l12 12M15 3L3 15"/></svg></button>
+      </div>
 
+      <div class="about-panel-meta">
+        <div>
+          <span class="meta-label">+ Infos</span>
+          <span>services cartographiques est un studio de design fondé par Marvin Mayard. Il y dessine des éditions, des sites internet, d’identités visuelles et des scénographies avec et pour les acteurs culturels, du bâti et de la ville. Il réalise des performances live <a href="https://marvinmayard.com/vj" target="_blank" rel="noopener noreferrer">VJ-Mapping</a>.<br><br>Il apprécie donner forme aux idées simples mais impactantes. Quand il ne travaille pas il continue d’apprendre ou pédale sur son vélo orange.</span>
+        </div>
 
+        <div>
+          <span class="meta-label">Références</span>
+          <span>AETC Architectes Urbanistes<br>
+          Agence Epoque<br>
+          Amis du Centre Pompidou<br>
+          AREP<br>
+          Arte<br>
+          Barbé &amp; Barbey<br>
+          Beepop Agency<br>
+          Campus Fonderie de l’Image<br>
+          Catherine Sabbah<br>
+          Centre Pompidou<br>
+          Clarisse Prévost<br>
+          Code Shop<br>
+          Culturé Collectif<br>
+          Felix Paturange<br>
+          Gusto<br>
+          Hopium<br>
+          L’Échappée Belle éditions<br>
+          Léo galerie<br>
+          Lille Métropole<br>
+          MANO Architecture<br>
+          Mezzanine<br>
+          Ministère de la Culture<br>
+          Netflix<br>
+          Requincaillerie Pantin<br>
+          Scandle Paris<br>
+          Sorbonne Universités<br>
+          Valérie Saïd<br>
+          Vraiment Vraiment<br>
+          We Vibin’</span>
+        </div>
 
+        <div>
+          <span class="meta-label">Contact</span>
+          <span><a class="mail-pill" href="mailto:servicescartographiques@protonmail.com">Mail</a><br><br>
+          <a class="mail-pill"href="https://www.are.na/marvin-mayard/blocks?sort=UPDATED_AT" target="_blank" rel="noopener noreferrer">Are.na</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // ---------- Horloge / date (navbar défilante) ----------
+      var navTimeEls = document.querySelectorAll('.nav-time');
+      var navDateEls = document.querySelectorAll('.nav-date');
+      var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+      function updateClock() {
+        var now = new Date();
+        var hh = String(now.getHours()).padStart(2, '0');
+        var mm = String(now.getMinutes()).padStart(2, '0');
+        var ss = String(now.getSeconds()).padStart(2, '0');
+        var timeStr = hh + ':' + mm + ':' + ss;
+        var dateStr = days[now.getDay()] + ' ' + months[now.getMonth()] + ' ' + now.getDate() + ' ' + now.getFullYear();
+
+        navTimeEls.forEach(function (el) { el.textContent = timeStr; });
+        navDateEls.forEach(function (el) { el.textContent = dateStr; });
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      // ---------- Panneau À propos ----------
+      var aboutPanel = document.getElementById('aboutPanel');
+      var aboutPanelClose = document.getElementById('aboutPanelClose');
+      var aboutTriggers = document.querySelectorAll('.about-trigger');
+
+      function openAboutPanel() {
+        aboutPanel.classList.add('open');
+        aboutPanel.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeAboutPanel() {
+        aboutPanel.classList.remove('open');
+        aboutPanel.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      aboutTriggers.forEach(function (btn) {
+        btn.addEventListener('click', openAboutPanel);
+      });
+      aboutPanelClose.addEventListener('click', closeAboutPanel);
+
+      // ---------- Pool d'images du portfolio (ex-carrousel plein écran) ----------
+      // Réutilisé pour peupler aléatoirement les carrousels des panneaux projet.
+      var PORTFOLIO_IMAGES = [
+        'img/portfolio/01_Mockup.jpg',
+        'img/portfolio/02_VS.03.jpg',
+        'img/portfolio/03_Promotion.Brochure.Friedberg.00.jpg',
+        'img/portfolio/04_CARNET_01.jpg',
+        'img/portfolio/05_PO2.jpg',
+        'img/portfolio/06_Capture-decran-2023-09-06-a-09.59.42.png',
+        'img/portfolio/07_RQ0A8897.jpg',
+        'img/portfolio/08_RQ0A2487.jpg',
+        'img/portfolio/09_Studio.Cards2.jpg',
+        'img/portfolio/10_11.png',
+        'img/portfolio/11_IMG_4547.jpg',
+        'img/portfolio/12_MANO.Cards.jpg',
+        'img/portfolio/13_CS-01.jpg',
+        'img/portfolio/14_3.jpg',
+        'img/portfolio/15_IMG_0071.jpg',
+        'img/portfolio/16_PP110x2.jpg',
+        'img/portfolio/17_FP01.jpg',
+        'img/portfolio/18_O1.jpg',
+        'img/portfolio/19_Promotion.Brochure.Friedberg.07.jpg',
+        'img/portfolio/20_IMG_0445.JPG',
+        'img/portfolio/21_IMG_0460-copie.jpg',
+        'img/portfolio/22_RQ0A8748.jpg',
+        'img/portfolio/23_Mano.Editorial-Mockup.Mushkino.jpg',
+        'img/portfolio/24_Numeriser-5.jpeg',
+        'img/portfolio/25_PO6.jpg',
+        'img/portfolio/26_design-5.png',
+        'img/portfolio/27_PPF-LYRS-004.002.jpg',
+        'img/portfolio/28_Prmotion.Barbey.Poire.Bottle_Mockup.jpg',
+        'img/portfolio/29_Friedber.UP-G-170-5x.jpg',
+        'img/portfolio/30_CLTR_UrbanPoster_UP-AMS-02.jpg',
+        'img/portfolio/31_EB.Promo.Theatre.jpg',
+        'img/portfolio/32_PPF-LYRS-001.jpg',
+        'img/portfolio/33_EB.Promo.Poesie.jpg',
+        'img/portfolio/34_P5130680.jpg',
+        'img/portfolio/35_ARTD-C05-Device-049.jpg'
+      ];
+
+      // ---------- Carrousel principal sous la navbar ----------
+      var homeCarouselTrack = document.getElementById('homeCarouselTrack');
+      var homeCarouselViewport = document.getElementById('homeCarouselViewport');
+      var homeCarouselCount = document.getElementById('homeCarouselCount');
+      var homeCarouselPrev = document.getElementById('homeCarouselPrev');
+      var homeCarouselNext = document.getElementById('homeCarouselNext');
+      var homeCarouselIndex = 0;
+
+      PORTFOLIO_IMAGES.forEach(function (src, index) {
+        var figure = document.createElement('figure');
+        figure.className = 'home-carousel-slide';
+
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = 'Projet du portfolio ' + (index + 1);
+        img.loading = index < 2 ? 'eager' : 'lazy';
+
+        figure.appendChild(img);
+        homeCarouselTrack.appendChild(figure);
+      });
+
+      function updateHomeCarousel() {
+        var slides = homeCarouselTrack.querySelectorAll('.home-carousel-slide');
+        if (!slides.length) return;
+
+        homeCarouselIndex = (homeCarouselIndex + slides.length) % slides.length;
+        var target = slides[homeCarouselIndex];
+        homeCarouselViewport.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
+        homeCarouselCount.textContent = (homeCarouselIndex + 1) + ' / ' + slides.length;
+      }
+
+      homeCarouselPrev.addEventListener('click', function () {
+        homeCarouselIndex -= 1;
+        updateHomeCarousel();
+      });
+
+      homeCarouselNext.addEventListener('click', function () {
+        homeCarouselIndex += 1;
+        updateHomeCarousel();
+      });
+
+      homeCarouselViewport.addEventListener('scroll', function () {
+        var slides = homeCarouselTrack.querySelectorAll('.home-carousel-slide');
+        if (!slides.length) return;
+
+        var nearestIndex = 0;
+        var nearestDistance = Infinity;
+        slides.forEach(function (slide, index) {
+          var distance = Math.abs(slide.offsetLeft - homeCarouselViewport.scrollLeft);
+          if (distance < nearestDistance) {
+            nearestDistance = distance;
+            nearestIndex = index;
+          }
+        });
+        homeCarouselIndex = nearestIndex;
+        homeCarouselCount.textContent = (homeCarouselIndex + 1) + ' / ' + slides.length;
+      }, { passive: true });
+
+      updateHomeCarousel();
+
+      // Texte de test pour la description 3 colonnes — générique,
+      // à remplacer par le vrai texte de présentation de chaque projet.
+      var PLACEHOLDER_DESCRIPTION =
+        'Texte de présentation à compléter. Ce paragraphe sert de test de ' +
+        'mise en page sur trois colonnes, aligné à gauche en drapeau. ' +
+        'Décrivez ici le contexte du projet, la démarche suivie, les choix ' +
+        'graphiques ou techniques, les contraintes rencontrées et le résultat ' +
+        'final livré au client. Une fois le vrai texte prêt, il suffit de ' +
+        'remplacer ce paragraphe dans les données du projet correspondant.';
+
+      // ---------- Données projets ----------
+      // "—" = information non renseignée (à compléter),
+      // Les entrées "démo" (Éditions, Webdesign 02/03) sont fictives,
+      // ajoutées pour tester la mise en page — à remplacer par de vrais projets.
+      var PROJECTS = {
+        kaio: {
+          title: 'Kaio',
+          category: 'Performances audiovisuelles',
+          year: '—',
+          client: 'Alva Noto',
+          brief: 'Spectral Journey — vidéomapping conçu en collaboration avec Alva Noto.',
+          images: ['img/Kaio.png']
+        },
+        temoignages: {
+          title: 'Témoignages',
+          category: 'Performances audiovisuelles',
+          year: '—',
+          client: 'Revue Zero',
+          brief: 'Clip vidéo réalisé pour le lancement de la revue Zero.',
+          images: ['img/image1.jpg']
+        },
+        tierra: {
+          title: 'Tierra del Fuego',
+          category: 'Performances audiovisuelles',
+          year: '—',
+          client: 'Google',
+          brief: 'Expérimentation audiovisuelle réalisée avec les outils Google.',
+          images: ['img/TierradelFuego.jpg']
+        },
+        odissey: {
+          title: 'Odissey',
+          category: 'Performances audiovisuelles',
+          year: '—',
+          client: '—',
+          brief: 'Installation audiovisuelle réactive.',
+          images: ['img/AV_01.gif']
+        },
+        salto: {
+          title: 'Salto',
+          category: 'Performances audiovisuelles',
+          year: '—',
+          client: '—',
+          brief: 'Installation audiovisuelle réactive.',
+          images: ['img/AV_02.jpeg']
+        },
+        space: {
+          title: 'Space',
+          category: 'Performances audiovisuelles',
+          year: '—',
+          client: '—',
+          brief: 'Installation audiovisuelle réactive.',
+          images: ['img/AV_14.gif']
+        },
+        geipan: {
+          title: 'Geipan',
+          category: 'Performances audiovisuelles',
+          year: '—',
+          client: '—',
+          brief: 'Installation audiovisuelle réactive.',
+          images: ['img/AV_09.gif']
+        },
+        designstudio: {
+          title: 'Design Studio',
+          category: 'Webdesign',
+          year: '—',
+          client: 'Studio personnel',
+          brief: 'Site du studio de design — marvinmayard.com',
+          images: []
+        },
+        valeriesaid: {
+          title: 'Valérie Saïd',
+          category: 'Webdesign · Direction artistique · Motiondesign · e-commerce',
+          year: '2020',
+          client: 'Valérie Saïd',
+          brief: "Conception du site internet de l'artisante Valérie Saïd.",
+          description: "Passée par le costume, elle s’attache depuis quelques années à dessiner puis concevoir accessoires et sacs en cuir et laine bouillie au sein de son atelier à Pantin.\n\nCouleurs pastels et formes franches, nous avons travaillé ensemble pour réaliser une boutique en ligne sur mesure, plus proche de son univers.",
+          preview: 'img/portfolio/Mockup.jpg',
+          images: [
+            'img/portfolio/Promotion.Desktop.VS.01.jpg',
+            'img/portfolio/VS.01.jpg',
+            'img/portfolio/VS.03.jpg',
+            'img/portfolio/Mockup.jpg'
+          ]
+        },
+
+        "amiscentrepompidou": {
+                  "title": "amis du Centre Pompidou",
+                  "category": "Graphisme",
+                  "year": "2020",
+                  "client": "Centre Pompidou & Amis",
+                  "brief": "J’ai travaillé avec les équipes du Centre Pompidou et celles des Amis pour la valorisation des collections du Musée National d’Art Moderne et les événements liés au mécénat d’oeuvre d’art.",
+                  "description": "Support imprimés, numériques, vidéos, les projets ont été multiples.",
+                  "preview": "img/portfolio/Flag-Mockup03.jpg",
+                  "images": [
+                            "img/portfolio/Flag-Mockup03.jpg",
+                            "img/portfolio/Flag-Mockup-03.jpg",
+                            "img/portfolio/05.jpg",
+                            "img/portfolio/C5.jpg",
+                            "img/portfolio/SOA.jpg",
+                            "img/portfolio/04.jpg",
+                            "img/portfolio/ACP.Cards.01.jpg",
+                            "img/portfolio/L3.jpg",
+                            "img/portfolio/C.jpg",
+                            "img/portfolio/ACP.Cards.02.jpg",
+                            "img/portfolio/ACP.Cards.jpg",
+                            "img/portfolio/07.jpg",
+                            "img/portfolio/IMG_0211.jpg"
+                  ],
+                  "autofill": false
+        },
+        "barbebarbey": {
+                  "title": "Barbé & Barbey",
+                  "category": "Graphisme",
+                  "year": "2019",
+                  "client": "Barbé Barbey",
+                  "brief": "Barbé Barbey est une marque de cidre artisanal",
+                  "description": "Issu d’une famille de producteurs de cidre et de calvados, Christian Barbé renoue en Suisse avec ce savoir-faire en lançant dès 2016 une collecte locale de pommes et de bouteilles, avant de développer progressivement Les Cidres du Léman. À partir de pommes locales complétées par des variétés cidricoles normandes et bretonnes plantées autour de Lausanne, il défend une production artisanale fondée sur des fermentations naturelles, peu d’interventions et la valorisation des caractéristiques propres à chaque variété. Cette démarche s’inscrit également dans une logique d’économie circulaire, notamment par la collecte, le lavage et le réemploi de bouteilles champenoises, afin de privilégier un cidre local, authentique et produit avec le moins de déchets possible.",
+                  "preview": "img/portfolio/Prmotion.Barbey.Poire.Bottle_Mockup.jpg",
+                  "images": [
+                            "img/portfolio/Prmotion.Barbey.Poire.Bottle_Mockup.jpg",
+                            "img/portfolio/Poire.jpg",
+                            "img/portfolio/Cidre.jpg",
+                            "img/portfolio/Pomone-17.jpg",
+                            "img/portfolio/Pomone-17-Original.jpg"
+                  ],
+                  "autofill": false
+        },
+        "culture": {
+                  "title": "Culturé",
+                  "category": "Conception de site internet · UX/UI Interfaces, · Intégration HTML & Animation CSS / JS",
+                  "year": "2020",
+                  "client": "Culturé Collectif",
+                  "brief": "Lancé en mai 2018, Culturé, association loi 1901, est un média culturel visant à mettre en lumière la jeunesse créative du Grand Paris.",
+                  "description": "Par l’intermédiaire d’événements hybrides alliant concerts, dj-sets, jams, performances live, expositions et ventes de vêtements, Culturé propose une programmation culturelle libre, intempestive et engagée.",
+                  "preview": "img/portfolio/CLTR-04.jpg",
+                  "images": [
+                            "img/portfolio/CLTR-04.jpg",
+                            "img/portfolio/CLTR-05.jpg",
+                            "img/portfolio/CLTR-06.jpg",
+                            "img/portfolio/CLTR-02.jpg",
+                            "img/portfolio/CLTR-PHONE.jpg",
+                            "img/portfolio/CLTR.jpg"
+                  ],
+                  "autofill": false
+        },
+        "desnouvelleshelene": {
+                  "title": "Des nouvelles d'Hélène",
+                  "category": "Conception d’un ouvrage de nouvelles",
+                  "year": "2021",
+                  "client": "Catherine Sabbah",
+                  "brief": "A la demande de Catherine Sabbah, “Des nouvelles d’Hélène” est un ouvrage rassemblant les écrits d’Hélène Sabbah.",
+                  "description": "13 nouvelles sont donc ici rassemblés pour former un objet conçu pour être un voyage, à travers les écrits mais aussi les images, tantôt floutées, tantôt transparente. Au fil des pages, un trames se dessine jusqu’à la tranche de livre, rendu visible par la reliure artisanale, réalisée par studio blue bird. En compagnie de Serena Albertini.",
+                  "preview": "img/portfolio/IMG_7777.jpg",
+                  "images": [
+                            "img/portfolio/IMG_7777.jpg",
+                            "img/portfolio/CS-03.jpg",
+                            "img/portfolio/IMG_7771.jpg",
+                            "img/portfolio/IMG_7773.jpg",
+                            "img/portfolio/Capture-decran-2021-11-05-a-23.59.15.png",
+                            "img/portfolio/Capture-decran-2021-11-05-a-23.58.40.png",
+                            "img/portfolio/Capture-decran-2021-11-05-a-23.59.03.png",
+                            "img/portfolio/IMG_7774.jpg",
+                            "img/portfolio/CS-02.jpg",
+                            "img/portfolio/CS-04.jpg",
+                            "img/portfolio/CS-08.jpg",
+                            "img/portfolio/IMG_7780.jpg",
+                            "img/portfolio/CS-05.jpg"
+                  ],
+                  "autofill": false
+        },
+        "echappeebelle": {
+                  "title": "Echappée Belle",
+                  "category": "Bookdesign · Directionartistique · Edition · Branding",
+                  "year": "2023",
+                  "client": "Echappée Belle éditions",
+                  "brief": "L’échappée belle est une maison d’édition fondée en 2010 à Paris par Florence Issac.",
+                  "description": "Elle se veut : - introspective, donnant tout son relief à un langage de l’intériorité et de l’émotion ; - humaniste et engagée, proposant un regard généreux sur le monde et les Hommes et leurs infinies virtualités ; combat contre la pensée unique - plateforme collaborative et solidaire. Avec pour ligne d’horizon la recherche de la beauté : beauté des mots (poésie, nouvelle, théâtre) ; beauté des artéfacts matériels (architecture et design, photographie) ; beauté de l’âme et du corps (danse, bien-être)",
+                  "preview": "img/portfolio/Capture-decran-2023-09-06-a-10.00.09.png",
+                  "images": [
+                            "img/portfolio/EB.Promo.Poesie.jpg",
+                            "img/portfolio/EB.Logo.Blanc.png",
+                            "img/portfolio/Capture-decran-2023-09-06-a-10.07.35.png",
+                            "img/portfolio/Capture-decran-2023-09-06-a-09.59.34.png",
+                            "img/portfolio/Capture-decran-2023-09-06-a-09.59.16.png",
+                            "img/portfolio/Capture-decran-2023-09-06-a-09.59.08.png",
+                            "img/portfolio/Capture-decran-2023-09-06-a-09.59.01.png",
+                            "img/portfolio/Capture-decran-2023-09-06-a-09.58.47.png",
+                            "img/portfolio/Capture-decran-2023-09-06-a-09.58.53.png",
+                            "img/portfolio/Capture-decran-2023-09-06-a-09.59.42.png",
+                            "img/portfolio/EB.Promo.Theatre.jpg",
+                            "img/portfolio/EB.Promo.AgirUtile.jpg",
+                            "img/portfolio/EB.Promo.Pioche.jpg",
+                            "img/portfolio/EB.SP.03.Tranches9.jpg",
+                            "img/portfolio/EB.SP.03.Tranches4.jpg",
+                            "img/portfolio/EB.SP.03.Tranches8.jpg",
+                            "img/portfolio/EB.SP.03.Tranches.jpg",
+                            "img/portfolio/EB.SP.03.Tranches14.jpg",
+                            "img/portfolio/EB.SP.03.Tranches2.jpg",
+                            "img/portfolio/EB.SP.03.Tranches5.jpg",
+                            "img/portfolio/EB.SP.03.Tranches12.jpg",
+                            "img/portfolio/EB.SP.03.Tranches6.jpg",
+                            "img/portfolio/EB.SP.03.Tranches13.jpg",
+                            "img/portfolio/EB.SP.03.Tranches3.jpg",
+                            "img/portfolio/Capture-decran-2023-09-06-a-10.00.09.png",
+                            "img/portfolio/Capture-decran-2023-09-06-a-09.58.39.png"
+                  ],
+                  "autofill": false
+        },
+        "epoqueagency": {
+                  "title": "Epoque Agency",
+                  "category": "Direction Artistique · Identité · Social Media · Edition",
+                  "year": "2022",
+                  "client": "Epoque Agency",
+                  "brief": "Accompagnement sur la direction de marque du bureau de communication de marque Epoque Paris.",
+                  "description": "“Raconter l’histoire contemporaine, les projets sincères et incarnés, porter la parole de marques inspirantes qui définissent l’époque.”",
+                  "preview": "img/portfolio/Promo.Epoque.iPad.02.jpg",
+                  "images": [
+                            "img/portfolio/Promo.Epoque.iPad.02.jpg",
+                            "img/portfolio/design-9.png",
+                            "img/portfolio/design-10.png",
+                            "img/portfolio/design-11.png",
+                            "img/portfolio/design-3.png",
+                            "img/portfolio/design-2.png",
+                            "img/portfolio/design-1.png",
+                            "img/portfolio/design-4.png",
+                            "img/portfolio/design-5.png",
+                            "img/portfolio/design-6.png",
+                            "img/portfolio/Business_Card_Mockup_023.jpg",
+                            "img/portfolio/11.png"
+                  ],
+                  "autofill": false
+        },
+        "faismoirire": {
+                  "title": "Fais moi rire",
+                  "category": "Dataviz · Bookdesign · Edition",
+                  "year": "2018",
+                  "client": "auto-édition",
+                  "brief": "“Fais moi rire” est une édition proposant une nouvelle narration à nos cyber-échanges sur les sites de rencontres.",
+                  "description": "Plus qu’un recueil de fragments Tinder, “fais moi rire” rend visible nos mécanismes parfois automatiques et questionne notre rapport à la séduction, au jugement et à leurs valeurs une fois partagés sur les réseaux. Screenshots à l’appui, de nouveaux récits se forment, et rendent compte, parfois avec humour, d’une nouvelle obsolescence, non plus de la technique mais de l’individu.",
+                  "preview": "img/portfolio/29.png",
+                  "images": [
+                            "img/portfolio/29.png",
+                            "img/portfolio/31.png",
+                            "img/portfolio/30.png"
+                  ],
+                  "autofill": false
+        },
+        "ikea": {
+                  "title": "IKEA",
+                  "category": "Identitédemarque · Photographie · Edition · Webdesign · DirectionArtistique",
+                  "year": "2022",
+                  "client": "MANO Architecture",
+                  "brief": "Accompagnement sur la direction artistique et de MANO Architecture ainsi que la réalisation de la monographie de présentation bureau.",
+                  "description": "MANO est une agence d’architecture et d’urbanisme engagée dans la pratique du codesign. Depuis 2015, l’agence MANO évolue avec un collectif composé d’architectes, d’artistes et de chercheurs.",
+                  "preview": "img/portfolio/P5110470.jpg",
+                  "images": [
+                            "img/portfolio/P5110470.jpg",
+                            "img/portfolio/P5130680.jpg"
+                  ],
+                  "autofill": false
+        },
+        "lesfouspensentils": {
+                  "title": "Les fous pensent-ils",
+                  "category": "Conception graphique · Direction artistique · Edition",
+                  "year": "2020",
+                  "client": "Clarisse Prévost, Auteure",
+                  "brief": "“ Pour retranscrire ma conception de l’amphithéâtre-monde, je compose le recueil en poésie et prose Les Fous Pensent-ils ?.",
+                  "description": "Et sous une forme psychanalytique, je me plais à aborder des thèmes tels que l’Amour, l’identité, les passions humaines, la relation à la création, l’absurdité et le stoïcisme. Enfin, j’y dépeins “les beautés et les maux de mon siècle” , et sous mon geste éclate le verbe être. ” Et c’est avec un grand plaisir que nous avons que nous avons entamons la conception de ce recueil, sur un ton aussi léger que coloré.",
+                  "preview": "img/portfolio/CLARISSE01.jpg",
+                  "images": [
+                            "img/portfolio/CLARISSE-02.jpg",
+                            "img/portfolio/CLARISSE01.jpg",
+                            "img/portfolio/IMG_0425_3.jpg",
+                            "img/portfolio/FP02.jpg",
+                            "img/portfolio/FP01.jpg"
+                  ],
+                  "autofill": false
+        },
+        "manoarchitecture": {
+                  "title": "MANO Architecture",
+                  "category": "Identitédemarque · Photographie · Edition · Webdesign · DirectionArtistique",
+                  "year": "2022",
+                  "client": "MANO Architecture",
+                  "brief": "Accompagnement sur la direction artistique et de MANO Architecture ainsi que la réalisation de la monographie de présentation bureau.",
+                  "description": "MANO est une agence d’architecture et d’urbanisme engagée dans la pratique du codesign. Depuis 2015, l’agence MANO évolue avec un collectif composé d’architectes, d’artistes et de chercheurs.",
+                  "preview": "img/portfolio/Mano.Editorial-Mockup.Mushkino.jpg",
+                  "images": [
+                            "img/portfolio/Mano.Editorial-Mockup.Mushkino.jpg",
+                            "img/portfolio/Mano.Promotion.01.jpg",
+                            "img/portfolio/Mano.Promotion.03.jpg",
+                            "img/portfolio/Mano.Promotion.05.jpg",
+                            "img/portfolio/Mano.Promotion.02.jpg",
+                            "img/portfolio/Mano.Promotion.04.jpg",
+                            "img/portfolio/MANO.Cards.jpg",
+                            "img/portfolio/MANO.Cards.02.jpg",
+                            "img/portfolio/Promotion.Brand.Mano.Stationery.02.jpg"
+                  ],
+                  "autofill": false
+        },
+        "morning": {
+                  "title": "Morning",
+                  "category": "Photographie & Look book",
+                  "year": "2021",
+                  "client": "Morning Coworking",
+                  "brief": "Morning coworking m’a demandé de travailler sur la mise en valeur de leurs espaces, situés entre le pac Monceau et la place de la République à Paris.",
+                  "description": "Entre couleurs vives et esthétique léchée, ces photos ont aussi donné lieu à la réalisation d’un lookbook présentant ces espaces en fonction des couleurs qui y sont mises en avant.",
+                  "preview": "img/portfolio/MORNING-MOCK-01.jpg",
+                  "images": [
+                            "img/portfolio/MORNING-MOCK-01.jpg",
+                            "img/portfolio/RQ0A8748.jpg",
+                            "img/portfolio/RQ0A8728.jpg",
+                            "img/portfolio/RQ0A8903.jpg",
+                            "img/portfolio/RQ0A8653.jpg",
+                            "img/portfolio/RQ0A8907.jpg",
+                            "img/portfolio/RQ0A8765.jpg",
+                            "img/portfolio/RQ0A8761.jpg",
+                            "img/portfolio/MORNING-REPUBLIQUECONF31.MORNING-REPUBLIQUECONF-01.jpg",
+                            "img/portfolio/RQ0A8897.jpg"
+                  ],
+                  "autofill": false
+        },
+        "myvisualmemorygoogle": {
+                  "title": "My Visual Memory by Google",
+                  "category": "Éditions",
+                  "year": "2019",
+                  "client": "Sorbonne",
+                  "brief": "Cette édition s'inscrit dans le cadre d'un projet de recherche sur le détournement de contenus web.",
+                  "description": "\"Détourner pour mieux révéler, la création numérique en mouvement\" consiste, entre recherche et pratique, à mettre en lumière les enjeux de veille et de transparence à l'échelle d'Internet, ainsi que les usages qui en découlent. Par détournement, il interroge le texte, l'image et leur utilisation une fois publiés sur le net. A travers la poésie, la pornographie, Tinder ou Twitter, ce projet acquiert de multiples facettes, dont l'une s'ouvre avec ce petit livre sur Google Images.",
+                  "preview": "img/portfolio/IMG_0071.jpg",
+                  "images": [
+                            "img/portfolio/3.jpg",
+                            "img/portfolio/28.jpg",
+                            "img/portfolio/56.jpg",
+                            "img/portfolio/1.png",
+                            "img/portfolio/67.jpg",
+                            "img/portfolio/IMG_0071.jpg",
+                            "img/portfolio/66.jpg",
+                            "img/portfolio/57.jpg",
+                            "img/portfolio/65.jpg",
+                            "img/portfolio/68.jpg"
+                  ],
+                  "autofill": false
+        },
+        "netflixgaze": {
+                  "title": "Netflix Gaze",
+                  "category": "Conception d’une interface interactive axée data",
+                  "year": "2021",
+                  "client": "Pcen, Sorbonne Universités",
+                  "brief": "Avec les données que nous avons recueillies auprès du PcEn (laboratoire de recherche de l'École des médias et du numérique de la Sorbonne), nous souhaitons dépeindre l'évolution de la recommandation de films et de séries dans le temps (Prime Time) et dans l'espace (Prime Space) dans l'interface de la page d'accueil de Netflix.",
+                  "description": "Plus important encore, nous voulons attirer l'attention sur les différentes variables (date de sortie, classement IMDB, s'il s'agit ou non d'une production Netflix ainsi que le type de contenu) prises en considération pour l'algorithme de Netflix. Nous pourrons alors mieux analyser une interface spécifique issue de l'algorithme.",
+                  "preview": "img/portfolio/NETFLIX_02.jpg",
+                  "images": [
+                            "img/portfolio/NETFLIX_02.jpg",
+                            "img/portfolio/NETFLIX_03.jpg"
+                  ],
+                  "autofill": false
+        },
+        "onda": {
+                  "title": "Onda",
+                  "category": "Data · Recherche · Design Interactif",
+                  "year": "2021",
+                  "client": "Sorbonne Universités",
+                  "brief": "Onda est une interface proposant une étude non exhaustive de la notion d'onde.",
+                  "description": "Autour du son ambiant, de gestes et fréquences, plusieurs expériences sont proposés. L'utilisateur est tantôt invité à cliquer, tantôt à défiler pour découvrir les nuances sonore de l'onde. Nous parlons d'ondes, les tibétains disent \"envoyer un message sur le vent\". Duuu : Radio Bonaventure #1",
+                  "preview": "img/portfolio/O1.jpg",
+                  "images": [
+                            "img/portfolio/PORTFOLIO-MARVIN-3.jpg",
+                            "img/portfolio/Capture-decran-2021-03-23-a-17.01.37.png",
+                            "img/portfolio/Capture-decran-2021-03-23-a-17.00.13.png",
+                            "img/portfolio/Capture-decran-2021-03-23-a-17.00.41.png",
+                            "img/portfolio/Capture-decran-2021-03-23-a-17.00.27.png",
+                            "img/portfolio/O1.jpg"
+                  ],
+                  "autofill": false
+        },
+        "paulfriedberg": {
+                  "title": "Paul Friedberg",
+                  "category": "Bookdesign · Photographie · Edition",
+                  "year": "2019",
+                  "client": "École des arts de la Sorbonne (Master Thesis)",
+                  "brief": "“Tout le monde a une part d’acteur et de spectateur en eux.”",
+                  "description": "Cette citation de l’architecte paysagiste américain M. Paul Friedberg lors d’une conférence à Minneapolis, vient illustrer la dialectique ancrée dans la conception d’un espace public. Friedberg, spécialisé dans la conception d’aires de jeux pour enfants, s’est appliqué durant toute sa carrière à réaliser des lieux où spectateurs deviennent acteurs par eux même, tendant peu à peu vers une émancipation par l’action.",
+                  "preview": "img/portfolio/Friedber.UP-G-170-5x.jpg",
+                  "images": [
+                            "img/portfolio/Friedber.UP-G-170-5x.jpg",
+                            "img/portfolio/Promotion.Brochure.Friedberg.00.jpg",
+                            "img/portfolio/Promotion.Brochure.Friedberg.01.jpg",
+                            "img/portfolio/Promotion.Brochure.Friedberg.02.jpg",
+                            "img/portfolio/Promotion.Brochure.Friedberg.03.jpg",
+                            "img/portfolio/Promotion.Brochure.Friedberg.04.jpg",
+                            "img/portfolio/Promotion.Brochure.Friedberg.05.jpg",
+                            "img/portfolio/Promotion.Brochure.Friedberg.08.jpg",
+                            "img/portfolio/Promotion.Brochure.Friedberg.07.jpg",
+                            "img/portfolio/Promotion.Brochure.Friedberg.10.jpg",
+                            "img/portfolio/Promotion.Brochure.Friedberg.11.jpg",
+                            "img/portfolio/Promotion.Brochure.Friedberg.12.jpg",
+                            "img/portfolio/Friedberg.05.jpg",
+                            "img/portfolio/Friedberg.04.jpg",
+                            "img/portfolio/Friedberg.03.jpg",
+                            "img/portfolio/Friedberg.01.jpg",
+                            "img/portfolio/Friedberg.08.jpg",
+                            "img/portfolio/Friedberg.06.jpg",
+                            "img/portfolio/Friedberg.07.jpg"
+                  ],
+                  "autofill": false
+        },
+        "placecaulier": {
+                  "title": "Place Caulier",
+                  "category": "Identitédemarque · Photographie · Edition · Webdesign · DirectionArtistique",
+                  "year": "2023",
+                  "client": "Vraiment Vraiment",
+                  "brief": "Afin de tester de nouveaux usages en amont du chantier de la place Caulier à Lille, dans le quartier de Fives, un aménagement temporaire à destination des habitant·e·s, associations et acteurs locaux est installé sur la Place Caulier.",
+                  "description": "Il vise à faciliter l’appropriation et l’animation de la place. Le marquage au sol a été réalisé par le studio lillois.",
+                  "preview": "img/portfolio/PPF-LYRS-001.jpg",
+                  "images": [
+                            "img/portfolio/PPF-LYRS-004.002.jpg",
+                            "img/portfolio/PPF-LYRS-004.03.jpg",
+                            "img/portfolio/Promotion.VV..jpg",
+                            "img/portfolio/Promotion.VV.3.jpg",
+                            "img/portfolio/Promotion.VV.2.jpg",
+                            "img/portfolio/Promotion.VV.5.jpg",
+                            "img/portfolio/Capture-decran-2023-05-22-a-10.24.32.png",
+                            "img/portfolio/Capture-decran-2023-05-22-a-10.29.03.png",
+                            "img/portfolio/Caulier_Expe_VV_Rendu3D_2301041_BD.jpg",
+                            "img/portfolio/PPF-LYRS-001.jpg"
+                  ],
+                  "autofill": false
+        },
+        "saltoange": {
+                  "title": "Salto Ange",
+                  "category": "Conception graphique · Direction artistique",
+                  "year": "2019",
+                  "client": "Okmasek, artiste sonore",
+                  "brief": "Salto Ange est un EP musical et visuel composé par l’artiste sonore OKMASEK.",
+                  "description": "Conçu comme un véritable voyage initiatique, chaque morceau correspond à un lieu géographique. Alliant sonorités house, nuances Rn’B et nappes atmosphérique, chacuns des 8 morceaux est interprété visuellement en direct lors de performances audiovisuelle. La cover du projet se décline en 8 coloris rappelant l’ambiance de chaque morceau. Composé informatiquement, elles sont un rappel de son interprétation live.",
+                  "preview": "img/portfolio/CASSETTE.jpg",
+                  "images": [
+                            "img/portfolio/VHS-Mockup.jpg",
+                            "img/portfolio/CD-SALTOANGE.jpg",
+                            "img/portfolio/CASSETTE.jpg",
+                            "img/portfolio/COVER.jpeg",
+                            "img/portfolio/COVER_7.jpeg",
+                            "img/portfolio/COVER_6.jpeg",
+                            "img/portfolio/13.jpg",
+                            "img/portfolio/9.jpg",
+                            "img/portfolio/11.jpg"
+                  ],
+                  "autofill": false
+        },
+        "scandle": {
+                  "title": "Scandle",
+                  "category": "Webdesign · Direction artistique · Motiondesign",
+                  "year": "2018",
+                  "client": "Scandle Paris",
+                  "brief": "Lancé en 2015, Scandle est une marque de vêtement qui au-delà de la mode entend revendiquer un style de vie à la française, à la fois urbain et maitrisé, alliant patrimoine et modernité.",
+                  "description": "Liant bar, restaurant, station de radio et boutique de vêtement, le projet prends vie au 68 rue blanche à Paris, entre concept store et lieu de vie. Le site internet vient apposer une idendité visuelle à la fois sobre et colorée, afin de retransmettre au mieux lees différentes facettes d’un concept en constante évolution.",
+                  "preview": "img/portfolio/S01.jpg",
+                  "images": [
+                            "img/portfolio/S09.jpg",
+                            "img/portfolio/S07.jpg",
+                            "img/portfolio/S10.jpg",
+                            "img/portfolio/S11.jpg",
+                            "img/portfolio/S02.jpg",
+                            "img/portfolio/S04.jpg",
+                            "img/portfolio/S03.jpg",
+                            "img/portfolio/S05.jpg",
+                            "img/portfolio/S01.jpg",
+                            "img/portfolio/44.png",
+                            "img/portfolio/46.png",
+                            "img/portfolio/14.png",
+                            "img/portfolio/S06.jpg"
+                  ],
+                  "autofill": false
+        },
+        "sorbonneuniversites": {
+                  "title": "Sorbonne Universités",
+                  "category": "UX/UI Interfaces, · Direction Artistique · Webdesign",
+                  "year": "2021",
+                  "client": "Sorbonne Universités - Multimedia Sorbonne",
+                  "brief": "Au sein du Master 2 Multimedia Interactif de l’Université Paris I Panthéon Sorbonne, nous avons eu à charge la conception du site internet et de l’identité de la formation.",
+                  "description": "Dirigé par David Bihanic et Bernard Bréchet, a pour objet de mettre en valeur les enseignements de la formation.",
+                  "preview": "img/portfolio/ID-MMI-2021_20.jpg",
+                  "images": [
+                            "img/portfolio/ID-MMI-2021_20.jpg",
+                            "img/portfolio/Mockup02.jpg",
+                            "img/portfolio/MMI_06.jpg",
+                            "img/portfolio/ID-MMI-2021_204.jpg",
+                            "img/portfolio/ID-MMI-2021_206.jpg",
+                            "img/portfolio/ID-MMI-2021_205.jpg",
+                            "img/portfolio/ID-MMI-2021_202.jpg",
+                            "img/portfolio/PO2.jpg",
+                            "img/portfolio/PO4.jpg",
+                            "img/portfolio/PO5.jpg",
+                            "img/portfolio/PO7.jpg",
+                            "img/portfolio/PO3.jpg",
+                            "img/portfolio/PO6.jpg",
+                            "img/portfolio/Capture-decran-2020-11-25-a-11.25.39.png",
+                            "img/portfolio/Capture-decran-2020-11-25-a-11.25.51.png",
+                            "img/portfolio/Capture-decran-2020-11-25-a-11.25.26.png",
+                            "img/portfolio/SYNTHESE_MARVIN_03.gif",
+                            "img/portfolio/Plan-de-travail-1.jpg",
+                            "img/portfolio/MMI.New.jpg",
+                            "img/portfolio/M04.jpg"
+                  ],
+                  "autofill": false
+        },
+        webdemo01: {
+          title: 'Projet démo 01',
+          category: 'Webdesign',
+          year: '—',
+          client: '—',
+          brief: 'Entrée fictive — à remplacer par un vrai projet webdesign.',
+          images: []
+        },
+        webdemo02: {
+          title: 'Projet démo 02',
+          category: 'Webdesign',
+          year: '—',
+          client: '—',
+          brief: 'Entrée fictive — à remplacer par un vrai projet webdesign.',
+          images: []
+        },
+        edition01: {
+          title: 'Édition démo 01',
+          category: 'Éditions',
+          year: '—',
+          client: '—',
+          brief: 'Entrée fictive — à remplacer par une vraie édition.',
+          images: []
+        },
+        edition02: {
+          title: 'Édition démo 02',
+          category: 'Éditions',
+          year: '—',
+          client: '—',
+          brief: 'Entrée fictive — à remplacer par une vraie édition.',
+          images: []
+        }
+      };
+
+      // ---------- Remplissage aléatoire des carrousels ----------
+      // Chaque projet est complété jusqu'à 4 images avec des visuels
+      // pris au hasard dans le pool du portfolio (sans doublon).
+      Object.keys(PROJECTS).forEach(function (key) {
+        var project = PROJECTS[key];
+        if (project.autofill === false) return;
+        var pool = PORTFOLIO_IMAGES.filter(function (src) {
+          return project.images.indexOf(src) === -1;
+        });
+
+        while (project.images.length < 4 && pool.length > 0) {
+          var randomIndex = Math.floor(Math.random() * pool.length);
+          project.images.push(pool.splice(randomIndex, 1)[0]);
+        }
+      });
+
+      // ---------- Vignette au survol ----------
+      var hoverPreview = document.getElementById('hoverPreview');
+      var hoverPreviewImg = document.getElementById('hoverPreviewImg');
+      var triggers = document.querySelectorAll('.project-trigger');
+
+      triggers.forEach(function (btn) {
+        var data = PROJECTS[btn.getAttribute('data-project')];
+        var firstImg = data && (data.preview || (data.images && data.images[0]));
+
+        if (firstImg) {
+          btn.addEventListener('mouseenter', function () {
+            hoverPreviewImg.src = firstImg;
+            hoverPreview.classList.add('visible');
+          });
+          btn.addEventListener('mouseleave', function () {
+            hoverPreview.classList.remove('visible');
+          });
+        }
+      });
+
+      document.addEventListener('mousemove', function (e) {
+        hoverPreview.style.left = e.clientX + 'px';
+        hoverPreview.style.top = e.clientY + 'px';
+      });
+
+      // ---------- Panneau de détail ----------
+      var panel = document.getElementById('projectPanel');
+      var panelClose = document.getElementById('panelClose');
+      var panelTitle = document.getElementById('panelTitle');
+      var panelYear = document.getElementById('panelYear');
+      var panelClient = document.getElementById('panelClient');
+      var panelCategory = document.getElementById('panelCategory');
+      var panelBrief = document.getElementById('panelBrief');
+      var panelDescription = document.getElementById('panelDescription');
+      var slideshowScroll = document.getElementById('slideshowScroll');
+      var slideshowControls = document.getElementById('slideshowControls');
+      var slideshowCount = document.getElementById('slideshowCount');
+      var slidePrev = document.getElementById('slidePrev');
+      var slideNext = document.getElementById('slideNext');
+
+      var currentImages = [];
+
+      function renderSlideshow() {
+        slideshowScroll.innerHTML = '';
+
+        if (currentImages.length === 0) {
+          var empty = document.createElement('div');
+          empty.className = 'slideshow-empty';
+          empty.textContent = 'Visuel à ajouter';
+          slideshowScroll.appendChild(empty);
+          slideshowControls.style.display = 'none';
+          return;
+        }
+
+        currentImages.forEach(function (src) {
+          var img = document.createElement('img');
+          img.src = src;
+          img.alt = panelTitle.textContent;
+          slideshowScroll.appendChild(img);
+        });
+
+        if (currentImages.length > 1) {
+          slideshowControls.style.display = 'flex';
+          slideshowCount.textContent = currentImages.length + ' images';
+        } else {
+          slideshowControls.style.display = 'none';
+        }
+      }
+
+      function scrollSlideshow(direction) {
+        var firstImg = slideshowScroll.querySelector('img');
+        var step = firstImg ? firstImg.getBoundingClientRect().width + 10 : 300;
+        slideshowScroll.scrollBy({ left: direction * step, behavior: 'smooth' });
+      }
+
+      slidePrev.addEventListener('click', function () { scrollSlideshow(-1); });
+      slideNext.addEventListener('click', function () { scrollSlideshow(1); });
+
+      function openPanel(key) {
+        var data = PROJECTS[key];
+        if (!data) return;
+
+        panelTitle.textContent = data.title;
+        panelYear.textContent = data.year;
+        panelClient.textContent = data.client;
+        panelCategory.textContent = data.category;
+        panelBrief.textContent = data.brief;
+        panelDescription.textContent = data.description || PLACEHOLDER_DESCRIPTION;
+
+        currentImages = data.images || [];
+        renderSlideshow();
+
+        closeAboutPanel();
+        panel.classList.add('open');
+        panel.setAttribute('aria-hidden', 'false');
+        hoverPreview.classList.remove('visible');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closePanel() {
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      triggers.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          openPanel(btn.getAttribute('data-project'));
+        });
+      });
+
+      panelClose.addEventListener('click', closePanel);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closePanel();
+          closeAboutPanel();
+        }
+      });
+    })();
+  </script>
 
 </body>
 </html>

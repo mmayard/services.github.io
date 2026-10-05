@@ -15,12 +15,11 @@
  */
 'use strict';
 
-var font = 'serif';
-var letter = 'studio';
+var font = 'sans-serif';
+var letter = 'M—S™';
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(0);
   fill(255);
 
   textFont(font);
